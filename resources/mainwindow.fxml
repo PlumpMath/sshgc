@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language Clojure?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="292.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <Button id="ge" layoutX="146.0" layoutY="315.0" mnemonicParsing="false" onAction="(action)" prefHeight="35.0" prefWidth="109.0" text="Login" />
+    <TextField layoutX="107.0" layoutY="81.0" prefWidth="157.0" />
+    <Label layoutX="22.0" layoutY="84.0" prefWidth="71.0" text="Server IP" textAlignment="LEFT">
+      <font>
+        <Font name="Droid Sans" size="13.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TextField layoutX="107.0" layoutY="119.0" prefWidth="157.0" />
+    <Label font="$x1" layoutX="24.0" layoutY="122.0" prefWidth="71.0" text="Account" textAlignment="LEFT" />
+    <Label font="$x1" layoutX="24.0" layoutY="163.0" prefWidth="71.0" text="Password" textAlignment="LEFT" />
+    <Label layoutX="22.0" layoutY="14.0" prefHeight="35.0" prefWidth="213.0" text="SSH Login GUI Client">
+      <font>
+        <Font name="Droid Sans Bold" size="15.0" />
+      </font>
+    </Label>
+    <PasswordField layoutX="107.0" layoutY="159.0" prefWidth="157.0" />
+    <ChoiceBox fx:id="session" layoutX="107.0" layoutY="195.0" prefWidth="157.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Label font="$x1" layoutX="24.0" layoutY="199.0" prefWidth="81.0" text="Session" textAlignment="LEFT" />
+    <CheckBox font="$x1" layoutX="107.0" layoutY="283.0" mnemonicParsing="false" text="Remember Me" />
+    <ChoiceBox fx:id="window_size" layoutX="107.0" layoutY="233.0" prefWidth="157.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Label font="$x1" layoutX="24.0" layoutY="237.0" prefWidth="81.0" text="Window Size" textAlignment="LEFT" />
+  </children>
+  <fx:script source="ui_controller.clj"/>
+</AnchorPane>
