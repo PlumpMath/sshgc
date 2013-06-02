@@ -1,8 +1,11 @@
 (ns sshgc.core
-  (:import (javafx.application Application)
+  (:import (javafx.application Application Platform)
            (javafx.fxml FXMLLoader)
-           (javafx.scene Parent Scene)
-           (javafx.stage Stage StageStyle)))
+           (javafx.event ActionEvent EventHandler)
+           (javafx.scene Scene)
+           (javafx.stage Stage)))
+;; (javafx.scene Parent Scene)
+;; (javafx.stage Stage StageStyle)))
 
 (gen-class
  :name sshgc.core
@@ -18,4 +21,11 @@
 
     (.setScene stage (Scene. root))
     (.setTitle stage "sshgc")
-    (.show stage)))
+    (.show stage)
+
+    (.setOnCloseRequest stage
+                        (proxy [EventHandler] []
+                          (handle [^ActionEvent event]
+                            (.hide stage)
+                            (Platform/exit))))
+    ))
