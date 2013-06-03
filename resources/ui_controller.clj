@@ -19,7 +19,7 @@
 ;;;; Initialize UI
 
 ;; setup window_size FXCollections
-(let [res-list '("1280x1024" "800x600")]
+(let [res-list '("1280x1024" "1024x768" "800x600" "640x480")]
 (doto window_size
   (.setItems (FXCollections/observableList
               ;; if user has Xephyr, add fullscreen option
