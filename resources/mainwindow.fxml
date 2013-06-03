@@ -37,7 +37,7 @@
       </items>
     </ChoiceBox>
     <Label font="$x1" layoutX="24.0" layoutY="199.0" prefWidth="81.0" text="Session" textAlignment="LEFT" />
-    <CheckBox font="$x1" layoutX="107.0" layoutY="283.0" mnemonicParsing="false" text="Remember Me" />
+    <CheckBox fx:id="remember" font="$x1" layoutX="107.0" layoutY="283.0" mnemonicParsing="false" text="Remember Me" />
     <ChoiceBox fx:id="window_size" layoutX="107.0" layoutY="233.0" prefWidth="157.0">
       <items>
         <FXCollections fx:factory="observableArrayList">

@@ -1,8 +1,20 @@
 ;; Make this script can call sshgc.controller functions directly
 (use 'sshgc.controller)
 
+;; We use sshgc.config to handle config file
+(require '[sshgc.config :as conf])
+
 ;; Since we need to modify collection list, import javafx.collections.FXCollections
 (import '[javafx.collections FXCollections])
+
+;;;; Config
+
+;; default config
+(def default-config {:remember true :window-size "800x600" :display "1" :account "" :ip ""})
+
+;; if config exist, use user config, else use default config
+(def config (let [c (conf/read-config)]
+              (if (nil? c) default-config c)))
 
 ;;;; Initialize UI
 
@@ -14,17 +26,18 @@
               (if xephyr-exist?
                 (conj res-list "fullscreen") res-list)))
 
-  (-> (.getSelectionModel) (.select "fullscreen"))))
+  (-> (.getSelectionModel) (.select (:window-size config)))))
 
 ;; setup session FXCollections
 (doto session
   (.setItems (FXCollections/observableList
               '("1" "2" "3")))
-  (-> (.getSelectionModel) (.select "1")))
+  (-> (.getSelectionModel) (.select (:display config))))
 
 ;; init ui for test
-(.setText account "yenchin")
-(.setText ip "192.168.1.172")
+(.setText account (:account config))
+(.setText ip (:ip config))
+(.setSelected remember (:remember config))
 
 ;;;; Actions
 (defn get-item
@@ -35,5 +48,14 @@
 (defn action
   "Create display and run ssh commands."
   []
-  (create-display (get-item window_size) (get-item session))
-  (ssh-connect (.getText account) (.getText ip) (.getText password) (get-item session)))
+  (let [remember? (.isSelected remember)
+        window-size (get-item window_size)
+        display (get-item session)
+        account (.getText account)
+        ip (.getText ip)
+        password (.getText password)]
+    (if remember?
+      (conf/save-config {:remember remember? :window-size window-size
+                         :display display :account account :ip ip}))
+    (create-display window-size display)
+    (ssh-connect account ip password display)))
