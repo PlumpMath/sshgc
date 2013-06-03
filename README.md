@@ -1,6 +1,6 @@
 # sshgc
 
-![Screenshot](https://github.com/coldnew/sshgc/raw/master/doc/screenshot.jpg)
+![Screenshot](https://github.com/coldnew/sshgc/raw/master/doc/screenshot.png)
 
 
 ## Usage
