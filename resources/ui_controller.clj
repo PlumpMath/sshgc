@@ -1,7 +1,7 @@
 ;; Make this script can call sshgc.controller functions directly
 (use 'sshgc.controller)
 
-;; Since we need to modify collection list, import javafx.collections
+;; Since we need to modify collection list, import javafx.collections.FXCollections
 (import '[javafx.collections FXCollections])
 
 ;;;; Initialize UI
@@ -35,4 +35,5 @@
 (defn action
   "Create display and run ssh commands."
   []
-  (create-display (get-item window_size) (get-item session)))
+  (create-display (get-item window_size) (get-item session))
+  (ssh-connect (.getText account) (.getText ip) (.getText password) (get-item session)))

@@ -20,25 +20,38 @@
 (def xephyr-exist?
   (command-exist? "Xephyr"))
 
+(def xnest-exist?
+  (command-exist? "Xnest"))
+
 (defn xephyr
   "Xephry commands."
   [window-size disp]
   (let [size (if (= window-size "fullscreen") "-fullscreen"
                  (str "-screen " window-size))]
-  (str "Xephyr -ac " size " -br -reset -terminate 2> /dev/null " ":" disp " &")))
+    (str "Xephyr -ac " size " -br -reset -terminate 2> /dev/null " ":" disp " &")))
 
 (defn xnest
   "Xnest commands."
   [window-size disp]
   (str "Xnest -geometry " window-size " :" disp " &"))
 
+(defn ssh
+  "ssh connect commands."
+  [account ip password disp]
+  (str "DISPLAY=:" disp " ssh -X -Y " account "@" ip " gnome-session"))
+
+(defn run-sh
+  [x]
+  (future (sh "bash" "-c" x)))
+
 (defn create-display
   "Create display if Xnest or Xephry exist."
   [window-size disp]
-  (let [d (str ":" disp)
-        run-sh (fn [x] (future (sh "bash" "-c" x)))]
+  (cond xephyr-exist? (run-sh (xephyr window-size disp))
+        xnest-exist?  (run-sh (xnest  window-size disp))
+        :else (dependancy-missing)))
 
-    (cond (command-exist? "Xephyr") (run-sh (xephyr window-size disp))
-          (command-exist? "Xnest") (run-sh (xnest window-size disp))
-          :else (dependancy-missing))
-    ))
+(defn ssh-connect
+  "Connect ssh with X tunnel."
+  [account ip password disp]
+  (println (run-sh (ssh account ip password disp))))
