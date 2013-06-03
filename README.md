@@ -1,6 +1,7 @@
 # sshgc
 
-A Clojure library designed to ... well, that part is up to you.
+![Screenshot](https://github.com/coldnew/sshgc/raw/master/doc/screenshot.jpg)
+
 
 ## Usage
 
