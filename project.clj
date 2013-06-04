@@ -7,6 +7,6 @@
                  [clojure-jsr223 "1.0"]
                  [local.oracle/javafxrt "2.2.21"]
                  [local/FXDialog "1.3"]
-                 [clj-ssh "0.5.6"]]
+                 [com.google.com.p.expect4j/expect4j "1.0"]]
   :main sshgc.core
   :aot :all)
