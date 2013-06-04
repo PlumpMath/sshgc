@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [clojure-jsr223 "1.0"]
                  [local.oracle/javafxrt "2.2.21"]
-                 [local/FXDialog "1.3"]]
+                 [local/FXDialog "1.3"]
+                 [clj-ssh "0.5.6"]]
   :main sshgc.core
   :aot :all)
